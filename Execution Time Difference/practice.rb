@@ -52,8 +52,17 @@ end
 
 def sub_sums_phase_2(arr)
   largest_sum = arr[0]
-  arr.each_with_index do |el, i|
-    sum = el + arr[i + 1]
-    largest_sum = sum if sum > largest_sum
+  current_sequence_sum = 0 
+  arr.each do |el|
+    if current_sequence_sum < 0 
+      current_sequence_sum = 0 
+    end 
+    
+    current_sequence_sum += el 
+    
+    if current_sequence_sum > largest_sum 
+      largest_sum = current_sequence_sum
+    end
   end  
+  largest_sum
 end
